@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+       /* function selectionSort(arr) {
+            var n=arr.length
+            for(var i=0;i<n;i++){
+                var minIndex=i;
+                for(var j=i+1;j<n;j++){
+                    if(arr[j]<arr[minIndex]){
+                        minIndex=j
+                    }
+                }
+                var a=arr[i]
+                arr[i]=arr[minIndex]
+                arr[minIndex]=a
+            }
+            return arr
+        }*/
+      /* function insertionSort(arr) {
+           var n=arr.length
+           for(var i=0;i<n;i++){
+               for(j=i;j>0;j--){
+                   if (arr[j]<arr[j-1])
+                   {
+                       var a=arr[j]
+                       arr[j]=arr[j-1]
+                       arr[j-1]=a
+                   }else{
+                       break;
+                   }
+               }
+           }
+           return arr
+       }*/
+       /*function insertionSort(arr) {
+           var n=arr.length
+           for(var i=0;i<n;i++){
+               var e=arr[i]
+               var j
+               for(j=i;j>0&&arr[j-1]>e;j--){
+                   arr[j]=arr[j-1]
+               }
+               arr[j]=e
+           }
+           return arr
+       }*/
+      /* function selectionSort(arr) {
+           var n=arr.length
+           var left=0;
+           var right=n-1
+           while(left<right){
+               var minIndex=left
+               var maxIndex=right
+               if(arr[minIndex]>arr[maxIndex]){
+                   var a=arr[minIndex]
+                   arr[minIndex]=arr[maxIndex]
+                   arr[maxIndex]=a
+               }
+               for(var i=left+1;i<right;i++ ){
+                   if (arr[i]<arr[minIndex]){
+                       minIndex=i
+                   }
+                   else if(arr[i]>arr[maxIndex]){
+                       maxIndex=i
+                   }
+               }
+               var b=arr[left]
+               arr[left]=arr[minIndex]
+               arr[minIndex]=b
+               var c=arr[right]
+               arr[right]=arr[maxIndex]
+               arr[maxIndex]=c
+               left++;
+               right--;
+           }
+return arr
+       }*/
+     /*  function shellSort(arr) {
+        var n=arr.length
+        var h=1;
+        while(h<n/3){
+        h=3*h+1
+        }
+        while(h>=1){
+        for(var i=h;i<n;i++){
+        var e=arr[i]
+        var j;
+        for(j=i;j>=h && e<arr[j-h];j-=h){
+        arr[j]=arr[j-h]
+
+        }
+        arr[j]=e;
+        }
+        h=Math.floor(h/3)
+        }
+        return arr
+
+        }*/
+      function __merge(arr,l,mid,r) {
+          var aux=[]
+          for(let i=l;i<=r;i++)
+              aux[i-l]=arr[i]
+          var i=l
+          var j=mid+1
+          for( var k = l ; k <= r; k ++ ){
+
+              if( i > mid ){  // 如果左半部分元素已经全部处理完毕
+                  arr[k] = aux[j-l]; j ++;
+              }
+              else if( j > r ){  // 如果右半部分元素已经全部处理完毕
+                  arr[k] = aux[i-l]; i ++;
+              }
+              else if( aux[i-l] < aux[j-l] ) {  // 左半部分所指元素 < 右半部分所指元素
+                  arr[k] = aux[i-l]; i ++;
+              }
+              else{  // 左半部分所指元素 >= 右半部分所指元素
+                  arr[k] = aux[j-l]; j ++;
+              }
+          }
+
+
+      }
+       function __mergeSort(arr,l,r){
+           if(l>=r)
+             return;
+           var mid=Math.floor((l+r)/2)
+           __mergeSort(arr,l,mid);
+           __mergeSort(arr,mid+1,r);
+           __merge(arr,l,mid,r)
+
+       }
+       function mergeSort(arr) {
+           __mergeSort(arr,0,arr.length-1)
+           return arr
+       }
+       
+    var arr=[6,5,3,8,3,1,0,9,21,54,123,543]
+  console.log(mergeSort(arr))
+    </script>
+</head>
+<body>
+
+</body>
+</html>
